@@ -1,0 +1,24 @@
+{
+  "seed": 20261101,
+  "dataset": "10.5281/zenodo.15783832",
+  "archive_md5": "307525c96633e977e144357e014acfc8",
+  "candidate_events": 206,
+  "retained_events": 66,
+  "strict3_events": 41,
+  "replicates": 228096,
+  "native_maxgap_minutes": 6,
+  "event_separation_hours": 6,
+  "event_tail_hours": 3,
+  "min_rainfall_mm": 2,
+  "event_duration_hours": [
+    3,
+    48
+  ],
+  "buffer_minutes": 60,
+  "flow_source": "inflow-analogue.csv",
+  "flow_saturation_exclusion_Ls": 2400,
+  "note": "One-minute numerical support grid is interpolated from native 1/3-minute measurements; not independent 1-minute field observations.",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "pandas": "3.0.1"
+}
