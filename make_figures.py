@@ -22,7 +22,7 @@ for ax,p in zip(axs,['COD','TSS']):
     for method in colors:
         d=S[(S.pollutant==p)&(S.scenario=='none')&(S.method==method)].sort_values('interval_min')
         ax.errorbar(d.interval_min,d.mean_abs_pct,yerr=[d.mean_abs_pct-d.ci_low,d.ci_high-d.mean_abs_pct],marker='o',color=colors[method],capsize=3,label='Linear interpolation' if method=='linear' else 'Previous observation')
-    ax.set(xlabel='Observation interval (min)',ylabel='Event-weighted mean absolute error (%)',title=p+' equivalent mass')
+    ax.set(xlabel='Observation interval (min)',ylabel='Equal-event mean absolute error (%)',title=p+' equivalent mass')
     ax.set_xticks([3,6,15,30,60]);ax.grid(axis='y',alpha=.2);ax.legend(fontsize=8)
 save(fig,'figure2_interval_error')
 
@@ -36,7 +36,7 @@ for ax,p in zip(axs,['COD','TSS']):
     ax.set_xticks(range(5),d.columns);ax.set_yticks(range(6),labels);ax.set(xlabel='Observation interval (min)',title=p+' equivalent mass')
     for i in range(6):
         for j in range(5): ax.text(j,i,f'{d.iloc[i,j]:.1f}',ha='center',va='center',color='white' if d.iloc[i,j]>mx*.6 else 'black',fontsize=9)
-fig.colorbar(im,ax=axs,shrink=.85,label='Event-weighted mean absolute error (%)')
+fig.colorbar(im,ax=axs,shrink=.85,label='Equal-event mean absolute error (%)')
 save(fig,'figure3_outage_matrix')
 
 fig,axs=plt.subplots(1,2,figsize=(10,3.8),layout='constrained')
