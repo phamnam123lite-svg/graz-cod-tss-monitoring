@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def main():
     import matplotlib;matplotlib.use('Agg')
-    A=Path(__file__).resolve().parent/'supplemental_analysis'
+    A=Path(__file__).resolve().parent.parent/'supplemental_analysis'
     new=pd.read_csv(A/'additional_event_metrics.csv');fig,axs=plt.subplots(1,2,figsize=(9,3.7),layout='constrained')
     for ax,pol in zip(axs,['COD','TSS']):
      for sc,label,col in [('random60','Uniform random','#347da3'),('flowweighted60','Flow-weighted random','#a47731'),('peakQ60','Peak flow','#bb3d42')]:

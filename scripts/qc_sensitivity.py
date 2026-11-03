@@ -7,7 +7,7 @@ from pathlib import Path
 import json,hashlib
 import numpy as np,pandas as pd
 import analyse_graz as b
-R=Path(__file__).resolve().parent
+R=Path(__file__).resolve().parent.parent
 FLAGGED='20110604T1250'
 
 def mean_ci(v):

@@ -4,7 +4,7 @@ import numpy as np,pandas as pd
 import analyse_graz as b
 
 def main():
-    R=Path(__file__).resolve().parent
+    R=Path(__file__).resolve().parent.parent
     O=R/'supplemental_analysis';O.mkdir(exist_ok=True);b.OUT=O
     events,_=b.build_events();series={p:b.read_series(path,col) for p,path,col in [('Q','hydraulic data/inflow-analogue.csv','flow_rate'),('COD','pollutant data/calibrated.csv','COD'),('TSS','pollutant data/spectrometer.csv','TSS')]}
     rows=[];audit=[]

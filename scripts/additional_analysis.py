@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import analyse_graz as base
 
 def main():
-    R=Path(__file__).resolve().parent
+    R=Path(__file__).resolve().parent.parent
     matplotlib.use('Agg')
     O=R/'supplemental_analysis';O.mkdir(exist_ok=True)
     base.OUT=O
