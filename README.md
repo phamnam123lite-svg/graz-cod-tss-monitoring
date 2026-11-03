@@ -45,13 +45,13 @@ python -m zipfile -e analysis_results.zip .
 python -m zipfile -e supplemental_results.zip .
 ```
 
-The first archive contains analysis/ (primary data tables, replicate metrics, sensitivity tables and Figures 1–4). The second contains supplemental_analysis/ (additional analyses, Figure 5, exploratory correlation figure, native-sample and source-QC/exclusion outputs). Key tables are also supplied at the root. SHA256_manifest.json uses paths relative to the repository root; the manifest, verification report and reproduction log are excluded from its own list to avoid circular hashes and allow local verification to regenerate the report.
+The first archive contains analysis/ (primary data tables, replicate metrics, sensitivity tables and Figures 1â€“4). The second contains supplemental_analysis/ (additional analyses, Figure 5, exploratory correlation figure, native-sample and source-QC/exclusion outputs). Key tables are also supplied at the root. SHA256_manifest.json uses paths relative to the repository root; the manifest, verification report and reproduction log are excluded from its own list to avoid circular hashes and allow local verification to regenerate the report.
 
 ![Equal-event mean absolute error](figure3_outage_matrix.png)
 
 ## Interpretation and reproducibility notes
 
-- The one-minute reference permits interpolation across at most six minutes. Original-point fractions have the same rounded median/range for COD and TSS (0.590; 0.323–0.896), although five windows differ. All source Q/COD/TSS timestamps are aligned to whole minutes; at_minutes nevertheless retains sub-minute timing for other inputs.
+- The one-minute reference permits interpolation across at most six minutes. Original-point fractions have the same rounded median/range for COD and TSS (0.590; 0.323â€“0.896), although five windows differ. All source Q/COD/TSS timestamps are aligned to whole minutes; at_minutes nevertheless retains sub-minute timing for other inputs.
 - The concentration shift test rebuilds its reference from shifted concentrations. It measures sampling-error stability, not clock-offset mass bias against an unchanged reference.
 - Spearman results now describe correlation time tau versus error at each interval. Interval/tau ranks are the reverse of tau ranks within a fixed interval; the five intervals are not independent tests. Tau is computed on an interpolated series and searched only up to one quarter of each window.
 - Primary means and all 228096 primary reconstruction rows are unchanged. Some bootstrap CI endpoints change because statistical streams are separated from plotting jitter and group iteration order. Correlation signs reverse with the stated predictor. See revision_changes.json.
@@ -61,3 +61,9 @@ The first archive contains analysis/ (primary data tables, replicate metrics, se
 - Pichler and Muschalla (Water 2026, 18(20), 2486; https://doi.org/10.3390/w18202486) is an existing publication, confirmed on the publisher page on 3 November 2026.
 
 The versioned GitHub release identifies the code and results. It has no Zenodo DOI. The unresolved physical cause of the flagged event should be reviewed with the supervisor or source-data authors before treating the manuscript as ready for submission.
+
+## Repository audit — 3 November 2026
+
+The manuscript reference remains release v1.2.0 at ae82bf5113037ad47aa2b575719f42fa17d8cbbf. A clean clone of that tag completed the full pipeline with six tests, 59 matching numeric tables and 32 matching file hashes. The source ZIP was supplied from a previously downloaded copy with its MD5 verified; this did not test live Zenodo downloading or a newly installed Python environment.
+
+The subsequent maintenance commit removes 16 consecutive duplicate statements across three supplemental scripts. It does not change the method or archived research results. See AUDIT_2026-11-03.md, verification_clean_clone_v120.json and clean_clone_v120.log.txt. Manuscripts should continue to cite the frozen research release.

@@ -10,7 +10,6 @@ def main():
     R=Path(__file__).resolve().parent
     matplotlib.use('Agg')
     O=R/'supplemental_analysis';O.mkdir(exist_ok=True)
-    O=R/'supplemental_analysis';O.mkdir(exist_ok=True)
     base.OUT=O
     events,audit=base.build_events()
     E=pd.DataFrame([e for e,_,_ in events])
@@ -36,8 +35,6 @@ def main():
     high=EV[(EV.event_id.isin(highids))&(EV.interval_min==15)&(EV.method=='linear')&(EV.scenario.isin(['none','random60','peakQ60']))]
     high_summary=high.groupby(['pollutant','scenario']).agg(n_events=('event_id','count'),mean_abs_pct=('mean_abs_pct','mean')).reset_index()
     high_summary.to_csv(O/'high_native_subset.csv',index=False)
-    rows=[];acf=[];figure_checks=[]
-    rows=[];acf=[];figure_checks=[]
     rows=[];acf=[];figure_checks=[]
     example_ids=[E.iloc[np.argmin(abs(E.Q_peak_Ls-E.Q_peak_Ls.median()))].event_id,E.sort_values('Q_peak_Ls').iloc[-1].event_id]
     for event_no,(e,grid,data) in enumerate(events):
@@ -138,12 +135,8 @@ def main():
         ax.scatter(t.acf_1e_minutes,t.mean_abs_pct,s=16,alpha=.6)
         ax.set(xlabel='Concentration correlation time (min)',ylabel='Event mean absolute error (%)',title=pol+' equivalent mass');ax.grid(alpha=.2)
     fig.savefig(O/'figureS1_correlation_scale.png',dpi=300);plt.close(fig)
-    fig.savefig(O/'figureS1_correlation_scale.png',dpi=300);plt.close(fig)
     meta={'high_native_event_count':len(highids),'high_native_event_ids':highids.tolist(),'duration_share_60_pct':[float(100*60/E.duration_min.max()),float(100*60/E.duration_min.min())],'duration_share_120_pct':[float(100*120/E.duration_min.max()),float(100*120/E.duration_min.min())],'figure1_checks':figure_checks,'baseline_reproduced':all(baseline_checks.values()),'baseline_checks':baseline_checks,'event_bootstrap_draws':2000,'seed':SEED,'source_version':'0.1','dataset_doi':'10.5281/zenodo.15783832'}
     (O/'review_provenance.json').write_text(json.dumps(meta,indent=2),encoding='utf-8')
-    print(json.dumps(meta,indent=2));print(summary.to_string(index=False));print(high_summary.to_string(index=False));print(dist.to_string(index=False))
-    print(json.dumps(meta,indent=2));print(summary.to_string(index=False));print(high_summary.to_string(index=False));print(dist.to_string(index=False))
-    print(json.dumps(meta,indent=2));print(summary.to_string(index=False));print(high_summary.to_string(index=False));print(dist.to_string(index=False))
     print(json.dumps(meta,indent=2));print(summary.to_string(index=False));print(high_summary.to_string(index=False));print(dist.to_string(index=False))
 
 if __name__=='__main__':

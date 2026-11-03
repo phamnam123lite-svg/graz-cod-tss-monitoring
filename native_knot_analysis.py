@@ -6,11 +6,7 @@ import analyse_graz as b
 def main():
     R=Path(__file__).resolve().parent
     O=R/'supplemental_analysis';O.mkdir(exist_ok=True);b.OUT=O
-    O=R/'supplemental_analysis';O.mkdir(exist_ok=True);b.OUT=O
-    O=R/'supplemental_analysis';O.mkdir(exist_ok=True);b.OUT=O
     events,_=b.build_events();series={p:b.read_series(path,col) for p,path,col in [('Q','hydraulic data/inflow-analogue.csv','flow_rate'),('COD','pollutant data/calibrated.csv','COD'),('TSS','pollutant data/spectrometer.csv','TSS')]}
-    events,_=b.build_events();series={p:b.read_series(path,col) for p,path,col in [('Q','hydraulic data/inflow-analogue.csv','flow_rate'),('COD','pollutant data/calibrated.csv','COD'),('TSS','pollutant data/spectrometer.csv','TSS')]}
-    rows=[];audit=[]
     rows=[];audit=[]
     for e,grid,data in events:
         n=int(e['duration_min']);ix=np.arange(60,60+n+1)
@@ -40,12 +36,9 @@ def main():
     df=pd.DataFrame(rows,columns=['event_id','pollutant','scenario','replicate','native_knot_abs_error_pct','matched_grid_abs_error_pct','reference_mass_change_pct'])
     df.to_csv(O/'native_knot_replicates.csv.gz',index=False,compression='gzip')
     ev=df.groupby(['event_id','pollutant','scenario']).mean(numeric_only=True).reset_index();ev.to_csv(O/'native_knot_event_metrics.csv',index=False)
-    ev=df.groupby(['event_id','pollutant','scenario']).mean(numeric_only=True).reset_index();ev.to_csv(O/'native_knot_event_metrics.csv',index=False)
     summary=ev.groupby(['pollutant','scenario']).agg(n_events=('event_id','count'),native_knot_abs_error_pct=('native_knot_abs_error_pct','mean'),matched_grid_abs_error_pct=('matched_grid_abs_error_pct','mean')).reset_index()
     summary.to_csv(O/'native_knot_summary.csv',index=False)
     pd.DataFrame(audit,columns=['event_id','shared_native_points','matched_duration_min','original_duration_min','largest_native_gap_min']).to_csv(O/'native_knot_support.csv',index=False)
-    print(summary.to_string(index=False));print('native fraction range',pd.read_csv(R/'analysis/events.csv').COD_native_fraction.agg(['min','median','max']).to_dict());print('matched windows',len(audit))
-    print(summary.to_string(index=False));print('native fraction range',pd.read_csv(R/'analysis/events.csv').COD_native_fraction.agg(['min','median','max']).to_dict());print('matched windows',len(audit))
     print(summary.to_string(index=False));print('native fraction range',pd.read_csv(R/'analysis/events.csv').COD_native_fraction.agg(['min','median','max']).to_dict());print('matched windows',len(audit))
 
 if __name__=='__main__':

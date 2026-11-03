@@ -1,0 +1,108 @@
+RUN additional_analysis.py
+additional event 0
+additional event 15
+additional event 30
+additional event 45
+additional event 60
+{
+  "high_native_event_count": 0,
+  "high_native_event_ids": [],
+  "duration_share_60_pct": [
+    2.4028834601521827,
+    32.967032967032964
+  ],
+  "duration_share_120_pct": [
+    4.805766920304365,
+    65.93406593406593
+  ],
+  "figure1_checks": [
+    {
+      "event_id": "20100513T0942",
+      "pollutant": "COD",
+      "peak_time": "2010-05-13 12:10:00+00:00",
+      "concentration_at_peak": 218.267,
+      "concentration_30min_before": 320.7143,
+      "concentration_30min_after": 190.2675
+    },
+    {
+      "event_id": "20100513T0942",
+      "pollutant": "TSS",
+      "peak_time": "2010-05-13 12:10:00+00:00",
+      "concentration_at_peak": 102.8,
+      "concentration_30min_before": 137.3,
+      "concentration_30min_after": 92.2
+    },
+    {
+      "event_id": "20110604T1250",
+      "pollutant": "COD",
+      "peak_time": "2011-06-04 15:26:00+00:00",
+      "concentration_at_peak": 0.1316,
+      "concentration_30min_before": 576.3025,
+      "concentration_30min_after": 98.9521
+    },
+    {
+      "event_id": "20110604T1250",
+      "pollutant": "TSS",
+      "peak_time": "2011-06-04 15:26:00+00:00",
+      "concentration_at_peak": 10.7,
+      "concentration_30min_before": 194.56666666666666,
+      "concentration_30min_after": 84.0
+    }
+  ],
+  "baseline_reproduced": true,
+  "baseline_checks": {
+    "absolute_error_pct": true,
+    "signed_error_pct": true,
+    "outage_penalty_pp": true
+  },
+  "event_bootstrap_draws": 2000,
+  "seed": 20261101,
+  "source_version": "0.1",
+  "dataset_doi": "10.5281/zenodo.15783832"
+}
+pollutant       scenario          method  n_events  mean_abs_pct    ci_low   ci_high  gap_volume_share_pct  gap_mass_share_pct
+      COD flowweighted60 flow_regression        66     10.163991  8.300454 12.223890             16.784139           15.973833
+      COD flowweighted60          linear        66      4.830834  3.788829  5.904182             16.784139           15.973833
+      COD           none flow_regression        66      5.262935  3.930899  7.033615              0.000000            0.000000
+      COD           none          linear        66      2.446949  1.882893  3.099516              0.000000            0.000000
+      COD        peakQ60 flow_regression        66     15.415285 11.661562 20.038313             25.242092           24.839453
+      COD        peakQ60          linear        66      8.189165  5.750927 11.006785             25.242092           24.839453
+      COD       random60 flow_regression        66      8.417894  6.780259 10.264194             11.923815           11.784649
+      COD       random60          linear        66      3.861129  3.076129  4.687448             11.923815           11.784649
+      TSS flowweighted60 flow_regression        66      8.568502  7.053329 10.168856             16.784139           16.917051
+      TSS flowweighted60          linear        66      4.691169  3.770535  5.695978             16.784139           16.917051
+      TSS           none flow_regression        66      4.086491  3.329583  4.945825              0.000000            0.000000
+      TSS           none          linear        66      2.727871  2.116419  3.506108              0.000000            0.000000
+      TSS        peakQ60 flow_regression        66     14.636781 10.996181 18.929300             25.242092           27.717442
+      TSS        peakQ60          linear        66      6.201906  4.801770  7.717536             25.242092           27.717442
+      TSS       random60 flow_regression        66      6.713370  5.616018  7.907181             11.923815           11.865282
+      TSS       random60          linear        66      3.898185  3.128900  4.777613             11.923815           11.865282
+Empty DataFrame
+Columns: [pollutant, scenario, n_events, mean_abs_pct]
+Index: []
+pollutant  scenario  n_events  mean_abs_pct  median_event_mean_abs_pct  p90_event_mean_abs_pct  p95_event_mean_abs_pct  mean_peak_bias_pct  peak_ci_low  peak_ci_high
+      COD   early60        66      4.951962                   1.990298               12.200899               16.950111           -8.212667   -15.293899      1.169106
+      COD      none        66      2.446949                   1.597559                5.765347                7.939294          -13.446199   -16.809258    -10.269173
+      COD   peakQ60        66      8.189165                   4.076124               21.061204               30.709601           -7.184686   -16.255722      3.806004
+      COD random120        66      6.699322                   4.354771               15.878211               17.917105          -11.599206   -15.930519     -7.034148
+      COD  random30        66      2.960628                   1.950555                6.601676                8.970444          -12.835386   -16.145241     -9.632800
+      COD  random60        66      3.861129                   2.594246                9.451333               11.371021          -12.636247   -16.348551     -9.115170
+      TSS   early60        66      4.325518                   2.431697               10.571404               14.304498          -16.852844   -21.790534    -11.804300
+      TSS      none        66      2.727871                   1.840129                5.114089                7.714943          -16.366819   -20.171414    -12.736947
+      TSS   peakQ60        66      6.201906                   3.876108               13.554465               21.292607          -19.816343   -26.559412    -12.991317
+      TSS random120        66      6.202388                   4.605015               13.181531               14.697357          -16.887580   -21.223389    -12.807954
+      TSS  random30        66      3.153759                   2.239574                6.616154                7.859058          -16.186916   -20.034345    -12.599699
+      TSS  random60        66      3.898185                   2.729405                8.654378               10.039505          -16.399681   -20.402219    -12.695451
+RUN native_knot_analysis.py
+pollutant scenario  n_events  native_knot_abs_error_pct  matched_grid_abs_error_pct
+      COD     none        66                   2.449274                    2.450129
+      COD  peakQ60        66                   8.204291                    8.203726
+      COD random60        66                   3.867338                    3.867463
+      TSS     none        66                   2.736813                    2.728896
+      TSS  peakQ60        66                   6.216633                    6.210469
+      TSS random60        66                   3.905485                    3.901255
+native fraction range {'min': 0.3234873749404478, 'median': 0.5898385565052232, 'max': 0.8961748633879781}
+matched windows 66
+RUN make_supplemental_figures.py
+RUN verify_outputs.py
+VERIFIED 59 tables; 32 release file hashes
