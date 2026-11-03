@@ -1,5 +1,8 @@
 graz/
 analysis/
+supplemental_analysis/
 __pycache__/
 .venv/
 *.pyc
+qa_events_*.png
+*.log

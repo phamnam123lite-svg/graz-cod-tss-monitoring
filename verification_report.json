@@ -1,61 +1,277 @@
 {
-  "original_tables_matched": [
-    "events.csv",
-    "event_audit_gap3_sep6_tail3_sat2400.csv",
-    "event_audit_gap6_sep6_tail2_sat2400.csv",
-    "event_audit_gap6_sep6_tail3_sat2300.csv",
-    "event_audit_gap6_sep6_tail3_sat2400.csv",
-    "event_audit_gap6_sep8_tail3_sat2400.csv",
-    "integration_sensitivity.csv",
-    "main_event_metrics.csv",
-    "main_summary.csv",
-    "paired_penalty_table.csv",
-    "saturation2300_event_metrics.csv",
-    "saturation2300_summary.csv",
-    "sep8_common_event_metrics.csv",
-    "sep8_common_summary.csv",
-    "sep8_event_metrics.csv",
-    "sep8_main_common_event_metrics.csv",
-    "sep8_main_common_summary.csv",
-    "sep8_summary.csv",
-    "shift-3_event_metrics.csv",
-    "shift-3_summary.csv",
-    "shift3_event_metrics.csv",
-    "shift3_summary.csv",
-    "strict3_event_metrics.csv",
-    "strict3_summary.csv",
-    "tail2_common_event_metrics.csv",
-    "tail2_common_summary.csv",
-    "tail2_event_metrics.csv",
-    "tail2_main_common_event_metrics.csv",
-    "tail2_main_common_summary.csv",
-    "tail2_summary.csv"
+  "pipeline_rerun": true,
+  "tables_matched": [
+    {
+      "path": "analysis/event_audit_gap3_sep6_tail3_sat2400.csv",
+      "rows": 206
+    },
+    {
+      "path": "analysis/event_audit_gap6_sep6_tail2_sat2400.csv",
+      "rows": 206
+    },
+    {
+      "path": "analysis/event_audit_gap6_sep6_tail3_sat2300.csv",
+      "rows": 206
+    },
+    {
+      "path": "analysis/event_audit_gap6_sep6_tail3_sat2400.csv",
+      "rows": 206
+    },
+    {
+      "path": "analysis/event_audit_gap6_sep8_tail3_sat2400.csv",
+      "rows": 193
+    },
+    {
+      "path": "analysis/events.csv",
+      "rows": 66
+    },
+    {
+      "path": "analysis/integration_sensitivity.csv",
+      "rows": 132
+    },
+    {
+      "path": "analysis/main_event_metrics.csv",
+      "rows": 7920
+    },
+    {
+      "path": "analysis/main_summary.csv",
+      "rows": 120
+    },
+    {
+      "path": "analysis/paired_penalty_table.csv",
+      "rows": 6
+    },
+    {
+      "path": "analysis/replicate_metrics.csv.gz",
+      "rows": 228096
+    },
+    {
+      "path": "analysis/saturation2300_event_metrics.csv",
+      "rows": 7800
+    },
+    {
+      "path": "analysis/saturation2300_summary.csv",
+      "rows": 120
+    },
+    {
+      "path": "analysis/sep8_common_event_metrics.csv",
+      "rows": 3180
+    },
+    {
+      "path": "analysis/sep8_common_summary.csv",
+      "rows": 60
+    },
+    {
+      "path": "analysis/sep8_event_metrics.csv",
+      "rows": 3480
+    },
+    {
+      "path": "analysis/sep8_main_common_event_metrics.csv",
+      "rows": 6360
+    },
+    {
+      "path": "analysis/sep8_main_common_summary.csv",
+      "rows": 120
+    },
+    {
+      "path": "analysis/sep8_summary.csv",
+      "rows": 60
+    },
+    {
+      "path": "analysis/shift-3_event_metrics.csv",
+      "rows": 3960
+    },
+    {
+      "path": "analysis/shift-3_summary.csv",
+      "rows": 60
+    },
+    {
+      "path": "analysis/shift3_event_metrics.csv",
+      "rows": 3960
+    },
+    {
+      "path": "analysis/shift3_summary.csv",
+      "rows": 60
+    },
+    {
+      "path": "analysis/strict3_event_metrics.csv",
+      "rows": 4920
+    },
+    {
+      "path": "analysis/strict3_summary.csv",
+      "rows": 120
+    },
+    {
+      "path": "analysis/tail2_common_event_metrics.csv",
+      "rows": 3960
+    },
+    {
+      "path": "analysis/tail2_common_summary.csv",
+      "rows": 60
+    },
+    {
+      "path": "analysis/tail2_event_metrics.csv",
+      "rows": 4080
+    },
+    {
+      "path": "analysis/tail2_main_common_event_metrics.csv",
+      "rows": 7920
+    },
+    {
+      "path": "analysis/tail2_main_common_summary.csv",
+      "rows": 120
+    },
+    {
+      "path": "analysis/tail2_summary.csv",
+      "rows": 60
+    },
+    {
+      "path": "supplemental_analysis/additional_event_metrics.csv",
+      "rows": 1056
+    },
+    {
+      "path": "supplemental_analysis/additional_replicates.csv.gz",
+      "rows": 27720
+    },
+    {
+      "path": "supplemental_analysis/additional_summary.csv",
+      "rows": 16
+    },
+    {
+      "path": "supplemental_analysis/correlation_scale_summary.csv",
+      "rows": 10
+    },
+    {
+      "path": "supplemental_analysis/distribution_and_peak_ci.csv",
+      "rows": 12
+    },
+    {
+      "path": "supplemental_analysis/event_audit_gap6_sep6_tail3_sat2400.csv",
+      "rows": 206
+    },
+    {
+      "path": "supplemental_analysis/event_correlation_scales.csv",
+      "rows": 132
+    },
+    {
+      "path": "supplemental_analysis/high_native_subset.csv",
+      "rows": 0
+    },
+    {
+      "path": "supplemental_analysis/interval_correlation_scale.csv",
+      "rows": 660
+    },
+    {
+      "path": "supplemental_analysis/native_knot_event_metrics.csv",
+      "rows": 396
+    },
+    {
+      "path": "supplemental_analysis/native_knot_replicates.csv.gz",
+      "rows": 9900
+    },
+    {
+      "path": "supplemental_analysis/native_knot_summary.csv",
+      "rows": 6
+    },
+    {
+      "path": "supplemental_analysis/native_knot_support.csv",
+      "rows": 66
+    },
+    {
+      "path": "supplemental_analysis/native_sample_event_metrics.csv",
+      "rows": 396
+    },
+    {
+      "path": "supplemental_analysis/native_sample_replicates.csv",
+      "rows": 3168
+    },
+    {
+      "path": "supplemental_analysis/native_sample_summary.csv",
+      "rows": 6
+    },
+    {
+      "path": "supplemental_analysis/peak_flowweighted_contrast.csv",
+      "rows": 2
+    },
+    {
+      "path": "supplemental_analysis/peak_random_paired_contrast.csv",
+      "rows": 2
+    },
+    {
+      "path": "supplemental_analysis/qc_exclusion_contrasts.csv",
+      "rows": 8
+    },
+    {
+      "path": "supplemental_analysis/qc_exclusion_penalties.csv",
+      "rows": 24
+    },
+    {
+      "path": "supplemental_analysis/qc_exclusion_table2.csv",
+      "rows": 24
+    },
+    {
+      "path": "supplemental_analysis/qc_exclusion_table3.csv",
+      "rows": 16
+    },
+    {
+      "path": "supplemental_analysis/season_bootstrap_ci.csv",
+      "rows": 48
+    },
+    {
+      "path": "supplemental_analysis/selection_comparison_events.csv",
+      "rows": 206
+    },
+    {
+      "path": "supplemental_analysis/selection_comparison_summary.csv",
+      "rows": 2
+    },
+    {
+      "path": "supplemental_analysis/source_qc_20110604.csv",
+      "rows": 86
+    },
+    {
+      "path": "supplemental_analysis/spearman_bootstrap_ci.csv",
+      "rows": 10
+    },
+    {
+      "path": "supplemental_analysis/subgroup_summary.csv",
+      "rows": 48
+    }
   ],
-  "original_replicate_rows": 228096,
-  "supplemental_tables_rerun_and_matched": [
-    "additional_event_metrics.csv",
+  "release_hashes_matched": [
+    ".gitignore",
+    "additional_analysis.py",
     "additional_summary.csv",
-    "correlation_scale_summary.csv",
+    "analyse_graz.py",
+    "analysis_results.zip",
     "distribution_and_peak_ci.csv",
-    "event_audit_gap6_sep6_tail3_sat2400.csv",
-    "event_correlation_scales.csv",
-    "high_native_subset.csv",
-    "interval_correlation_scale.csv",
-    "native_knot_event_metrics.csv",
+    "events.csv",
+    "figure3_outage_matrix.png",
+    "LICENSE",
+    "main_summary.csv",
+    "make_figures.py",
+    "make_supplemental_figures.py",
+    "native_knot_analysis.py",
     "native_knot_summary.csv",
-    "native_knot_support.csv",
+    "paired_penalty_table.csv",
     "peak_flowweighted_contrast.csv",
-    "peak_random_paired_contrast.csv",
+    "prepare_data.py",
+    "provenance.json",
+    "qc_sensitivity.py",
+    "README.md",
+    "requirements.txt",
+    "revision_changes.json",
+    "run_pipeline.py",
     "season_bootstrap_ci.csv",
-    "selection_comparison_events.csv",
     "selection_comparison_summary.csv",
     "spearman_bootstrap_ci.csv",
     "subgroup_summary.csv",
-    "additional_replicates.csv.gz",
-    "native_knot_replicates.csv.gz"
+    "supplemental_results.zip",
+    "test_analysis.py",
+    "uncertainty_analysis.py",
+    "verify_outputs.py"
   ],
   "rtol": 1e-10,
   "atol": 1e-10,
-  "raw_archive_md5": "307525c96633e977e144357e014acfc8",
-  "scope": "Numerical reproducibility and manuscript-output consistency; not independent validation of field measurements."
+  "scope": "Numerical reproducibility, not independent validation of field measurements."
 }

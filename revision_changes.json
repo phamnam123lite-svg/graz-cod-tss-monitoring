@@ -1,0 +1,34 @@
+{
+  "prior_release": "v1.1.0",
+  "primary_means_and_228096_replicates": "unchanged within 1e-10",
+  "intentional_changes": [
+    {
+      "path": "analysis/paired_penalty_table.csv",
+      "columns_with_any_difference": [
+        "ci_low"
+      ]
+    },
+    {
+      "path": "supplemental_analysis/correlation_scale_summary.csv",
+      "columns_with_any_difference": [
+        "spearman_rho"
+      ]
+    },
+    {
+      "path": "supplemental_analysis/season_bootstrap_ci.csv",
+      "columns_with_any_difference": [
+        "low",
+        "high"
+      ]
+    },
+    {
+      "path": "supplemental_analysis/spearman_bootstrap_ci.csv",
+      "columns_with_any_difference": [
+        "rho",
+        "low",
+        "high"
+      ]
+    }
+  ],
+  "reason": "Per-group bootstrap streams are now independent of plotting and iteration order. Correlations use tau directly instead of interval/tau, so signs reverse. Event-exclusion and native-sample analyses are additional, not replacements for the primary series."
+}

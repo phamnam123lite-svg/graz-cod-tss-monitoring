@@ -2,6 +2,7 @@
 No field measurements are generated: sparse schedules/outages are experimental masks.
 """
 from pathlib import Path
+from importlib.metadata import version
 import sys, json, hashlib
 ROOT=Path(__file__).resolve().parent
 import numpy as np
@@ -9,7 +10,7 @@ import pandas as pd
 
 RAW=ROOT/'graz/raw'
 OUT=ROOT/'analysis'
-OUT.mkdir(exist_ok=True)
+
 SEED=20261101
 
 def mass_kg(q,c,method='linear',dt=60):
@@ -31,8 +32,9 @@ def at_minutes(s,grid,maxgap):
     """
     valid=s.loc[grid[0]-pd.Timedelta(minutes=maxgap):grid[-1]+pd.Timedelta(minutes=maxgap)].dropna()
     if valid.empty: return np.full(len(grid),np.nan),np.zeros(len(grid),dtype=bool)
-    x=valid.index.as_unit('ns').asi8//60_000_000_000
-    z=grid.as_unit('ns').asi8//60_000_000_000
+    origin=grid[0].value
+    x=(valid.index.as_unit('ns').asi8-origin)/60_000_000_000
+    z=(grid.as_unit('ns').asi8-origin)/60_000_000_000
     assert np.all(np.diff(x)>0), 'Minute timestamp conversion must be strictly increasing'
     y=valid.to_numpy()
     j=np.searchsorted(x,z)
@@ -45,6 +47,7 @@ def at_minutes(s,grid,maxgap):
 
 def candidate_events(separation=6,tail=3):
     r=read_series('precipitation data/0033901601.csv','0033901601').dropna()
+    r=r[r>0]  # Only positive bucket increments define rain groups.
     groups=(r.index.to_series().diff().dt.total_seconds().fillna(1e10)>separation*3600).cumsum().to_numpy()
     events=[]
     for gid in np.unique(groups):
@@ -52,13 +55,14 @@ def candidate_events(separation=6,tail=3):
         if rain.sum()<2-1e-8: continue
         start=rain.index[0].floor('min'); end=rain.index[-1].ceil('min')+pd.Timedelta(hours=tail)
         duration=(end-start).total_seconds()/60
-        if duration<tail*60 or duration>2880: continue
+        if duration>2880: continue
         events.append(dict(event_id=start.strftime('%Y%m%dT%H%M'),start=start,end=end,
                            rainfall_mm=float(rain.sum()),duration_min=duration,
                            rain_duration_min=(rain.index[-1]-rain.index[0]).total_seconds()/60))
     return events
 
 def build_events(maxgap=6,separation=6,tail=3,saturation=2400):
+    OUT.mkdir(parents=True,exist_ok=True)
     q=read_series('hydraulic data/inflow-analogue.csv','flow_rate')
     cod=read_series('pollutant data/calibrated.csv','COD')
     tss=read_series('pollutant data/spectrometer.csv','TSS')
@@ -193,7 +197,8 @@ def main():
             common=sorted(set(sr.event_id)&set(rep.event_id))
             summarize(sr[sr.event_id.isin(common)],tag+'_common')
             summarize(rep[rep.event_id.isin(common)],tag+'_main_common')
-    # Relative concentration/flow timing uncertainty and numerical integration grid.
+    # Sampling-error stability: shifted concentrations define BOTH estimates and reference.
+    # This is not clock-offset mass bias against an unshifted reference.
     for lag in [-3,3]:
         rs=[]
         for e,g,d in events: rs.extend(run_event(e,g,d,quick=True,shift=lag))
@@ -216,10 +221,23 @@ def main():
           'min_rainfall_mm':2,'event_duration_hours':[3,48],'buffer_minutes':60,
           'flow_source':'inflow-analogue.csv','flow_saturation_exclusion_Ls':2400,
           'note':'One-minute numerical support grid is interpolated from native 1/3-minute measurements; not independent 1-minute field observations.',
-          'python':sys.version,'numpy':np.__version__,'pandas':pd.__version__}
+          'timestamp_audit':timestamp_audit(),'python':sys.version,'numpy':np.__version__,'pandas':pd.__version__,'matplotlib':version('matplotlib')}
     (OUT/'provenance.json').write_text(json.dumps(meta,indent=2),encoding='utf-8')
     print(json.dumps(meta,indent=2),flush=True)
     print(summary[(summary.method=='linear')&(summary.interval_min.isin([3,15,60]))].to_string(index=False),flush=True)
+
+def timestamp_audit():
+    result={}
+    for label,rel,col in [('Q','hydraulic data/inflow-analogue.csv','flow_rate'),('COD','pollutant data/calibrated.csv','COD'),('TSS','pollutant data/spectrometer.csv','TSS')]:
+        s=read_series(rel,col)
+        result[label]={'rows':len(s),'subminute_timestamps':int((s.index.as_unit('ns').asi8%60_000_000_000!=0).sum())}
+    return result
+
+def flow_predict(q_samples,c_samples,q_target):
+    qm=q_samples.mean();qs=q_samples.std()
+    if qs<1e-12:return np.full(len(q_target),max(0.,c_samples.mean()))
+    coef=np.linalg.lstsq(np.column_stack([np.ones(len(q_samples)),(q_samples-qm)/qs]),c_samples,rcond=None)[0]
+    return np.maximum(0,coef[0]+coef[1]*(q_target-qm)/qs)
 
 def verify_calculations():
     idx=pd.date_range('2010-01-01',periods=4,freq='3min',tz='UTC')
