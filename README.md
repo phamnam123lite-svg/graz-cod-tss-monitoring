@@ -22,7 +22,7 @@ Original observations: Pichler, Hofer, Gamerith and Gruber, Zenodo version 0.1, 
 
 ## Reproduce from a clean clone
 
-Use Python 3.12. Run in the repository root:
+Use Python 3.12. The .gitattributes file preserves exact release bytes on Windows and other platforms so Git line-ending conversion cannot invalidate SHA256 checks. Run in the repository root:
 
 ```text
 python -m venv .venv

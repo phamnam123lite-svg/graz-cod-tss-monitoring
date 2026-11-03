@@ -1,5 +1,5 @@
 {
-  "pipeline_rerun": true,
+  "pipeline_rerun": false,
   "tables_matched": [
     {
       "path": "analysis/event_audit_gap3_sep6_tail3_sat2400.csv",
@@ -239,7 +239,10 @@
     }
   ],
   "release_hashes_matched": [
+    ".gitattributes",
     ".gitignore",
+    "LICENSE",
+    "README.md",
     "additional_analysis.py",
     "additional_summary.csv",
     "analyse_graz.py",
@@ -247,7 +250,6 @@
     "distribution_and_peak_ci.csv",
     "events.csv",
     "figure3_outage_matrix.png",
-    "LICENSE",
     "main_summary.csv",
     "make_figures.py",
     "make_supplemental_figures.py",
@@ -258,7 +260,6 @@
     "prepare_data.py",
     "provenance.json",
     "qc_sensitivity.py",
-    "README.md",
     "requirements.txt",
     "revision_changes.json",
     "run_pipeline.py",

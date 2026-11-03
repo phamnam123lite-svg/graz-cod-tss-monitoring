@@ -551,3 +551,6 @@ RUN qc_sensitivity.py
 Source QC, exclusion tables and native-sample comparison written.
 PIPELINE COMPLETE
 VERIFIED 59 tables; 31 release file hashes
+
+POST-LINE-ENDING-FIX: check existing regenerated tables and updated release hashes
+VERIFIED 59 tables; 32 release file hashes
