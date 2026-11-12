@@ -1,6 +1,7 @@
 graz/
 analysis/
 supplemental_analysis/
+revision_analysis/
 __pycache__/
 .venv/
 *.pyc

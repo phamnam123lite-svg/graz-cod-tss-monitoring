@@ -236,6 +236,34 @@
     {
       "path": "supplemental_analysis/subgroup_summary.csv",
       "rows": 48
+    },
+    {
+      "path": "revision_analysis/exposure_adjusted_contrast.csv",
+      "rows": 2
+    },
+    {
+      "path": "revision_analysis/flow_resolution.csv",
+      "rows": 66
+    },
+    {
+      "path": "revision_analysis/influence_summary.csv",
+      "rows": 12
+    },
+    {
+      "path": "revision_analysis/lab_sensor_pairs.csv",
+      "rows": 53
+    },
+    {
+      "path": "revision_analysis/lab_sensor_summary.csv",
+      "rows": 3
+    },
+    {
+      "path": "revision_analysis/signal_screen_sensitivity.csv",
+      "rows": 24
+    },
+    {
+      "path": "revision_analysis/signal_screen_windows.csv",
+      "rows": 66
     }
   ],
   "release_hashes_matched": [
@@ -271,9 +299,17 @@
     "scripts/test_analysis.py",
     "scripts/uncertainty_analysis.py",
     "scripts/verify_outputs.py",
-    "docs/REPOSITORY_LAYOUT.md"
+    "docs/REPOSITORY_LAYOUT.md",
+    "scripts/revision_checks.py",
+    "results/archives/revision_results.zip",
+    "results/tables/lab_sensor_summary.csv",
+    "results/tables/signal_screen_sensitivity.csv",
+    "results/tables/influence_summary.csv",
+    "results/tables/exposure_adjusted_contrast.csv",
+    "docs/REVISION_5.md"
   ],
   "rtol": 1e-10,
   "atol": 1e-10,
-  "scope": "Numerical reproducibility, not independent validation of field measurements."
+  "scope": "Numerical reproducibility, not independent validation of field measurements.",
+  "note": "Full rerun logged in verification/revision5_rerun.log.txt; hashes rechecked after the final documentation edit."
 }

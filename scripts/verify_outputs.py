@@ -17,7 +17,7 @@ def main():
         if actual!=expected:raise AssertionError('Release file hash differs: '+rel)
         hashes.append(rel)
     checked=[]
-    for archive in ['analysis_results.zip','supplemental_results.zip']:
+    for archive in ['analysis_results.zip','supplemental_results.zip','revision_results.zip']:
         with ZipFile(R/'results/archives'/archive) as z:
             for rel in z.namelist():
                 if not rel.endswith(('.csv','.csv.gz')):continue

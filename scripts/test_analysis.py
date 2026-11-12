@@ -3,6 +3,7 @@ import unittest
 import numpy as np,pandas as pd
 import analyse_graz as b
 from qc_sensitivity import nearest_native
+import revision_checks as rc
 
 class AnalysisChecks(unittest.TestCase):
     def test_existing_integrals(self):b.verify_calculations()
@@ -29,5 +30,21 @@ class AnalysisChecks(unittest.TestCase):
         t=np.array([0.,1.,4.,6.]);q=2+t;c=4+3*t
         dense=np.arange(7.)
         self.assertAlmostEqual(b.mass_kg(q,c,dt=np.diff(t)),b.mass_kg(2+dense,4+3*dense,dt=1),places=12)
+    def test_lab_pairing_and_agreement(self):
+        idx=pd.to_datetime(['2010-01-01T00:00Z','2010-01-01T00:03Z','2010-01-01T00:10Z'])
+        s=pd.Series([10.,20.,30.],index=idx)
+        value,offset=rc.nearest_observation(s,pd.Timestamp('2010-01-01T00:02:10Z'),3)
+        self.assertEqual(value,20.);self.assertEqual(offset,50.)
+        self.assertTrue(np.isnan(rc.nearest_observation(s,pd.Timestamp('2010-01-01T00:06:30Z'),3)[0]))
+        a=rc.agreement([100.,200.],[110.,180.])
+        self.assertAlmostEqual(a['median_signed_diff_pct'],0.);self.assertAlmostEqual(a['mean_abs_diff_pct'],10.)
+    def test_exposure_adjustment_recovers_known_effect(self):
+        rng=np.random.default_rng(1);rows=[]
+        for e in range(40):
+            level=rng.normal(5,2)
+            for sc,peak,fw in [('random60',0,0),('flowweighted60',0,1),('peakQ60',1,0)]:
+                share=rng.uniform(5,40)
+                rows.append(dict(event_id=e,gap_mass_share_pct=share,is_flowweighted=float(fw),is_peak=float(peak),mean_abs_pct=level+0.25*share+2.0*peak))
+        np.testing.assert_allclose(rc.within_event_fit(pd.DataFrame(rows)),[0.25,0.,2.],atol=1e-10)
 
 if __name__=='__main__':unittest.main(verbosity=2)
